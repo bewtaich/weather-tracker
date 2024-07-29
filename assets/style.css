@@ -1,4 +1,10 @@
+main {
+    display: grid;
+    grid-template-columns: 3fr 7fr;  
+    font-family: Georgia, serif;
+    height: 100vh;
 
+}
 header {
     background-color: blue;
     text-align: center;
@@ -13,7 +19,7 @@ header {
 h1 {
     color:white;
    font-size: 3em;
-   font-family: Georgia, serif;
+
 }
 
 h2{
@@ -23,10 +29,23 @@ h2{
 
 nav {
     border: 1px solid black;
-    max-width:30%;
-    height:100vh;
+    width: 100%;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    height:100vh
 }
 
-main {
+section {
+    border: 1px solid black;
+    width:100%;
+    padding:20px;
+}
+
+input {
+    display: block;
+}
+
+#cityInfo {
     border: 1px solid black;
 }

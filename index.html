@@ -13,16 +13,34 @@
   </header>
 
   <main>
-    <nav>
-        <div>
-            <h2>Search for a City:</h2>
-            <input type="text" name="City" id="city">
-            <button></button>
-        </div>
-    </nav>
+    <aside>
+        <nav>
+            <div id="searchbox">
+                <h2>Search for a City:</h2>
+            <form>
+                <input type="text" name="City" id="city">
+                <button id="search">Search</button>
+            </form>
+            </div>
+        </nav>
+    </aside>
 
     <section>
+        <div id="cityInfo">
+            <h2 id="cityName">City (Date)</h2>
+            <p id="temp">Temp</p>
+            <p id="wind">Wind</p>
+            <p id="humidity">Humidity</p>
+        </div>
 
+        <div id="forecast">
+            <h3></h3>
+            <div id="day1"></div>
+            <div id="day2"></div>
+            <div id="day3"></div>
+            <div id="day4"></div>
+            <div id="day5"></div>
+        </div>
     </section>
   </main>
 
