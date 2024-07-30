@@ -2,18 +2,21 @@ main {
     display: grid;
     grid-template-columns: 3fr 7fr;  
     font-family: Georgia, serif;
-    height: 100vh;
 
 }
 header {
-    background-color: blue;
+    background-color: rgb(0, 85, 255);
     text-align: center;
-    width: 100%;
+    max-width: 100vw;
     height:80px;
     display: flex;
     justify-content: center;
     align-items: center;
 
+}
+
+aside {
+    border-right:1px solid black;
 }
 
 h1 {
@@ -23,29 +26,110 @@ h1 {
 }
 
 h2{
-    font-size: 2em;
-    padding:20px;
+    font-size: 2.5em;
+    
 }
 
+h3 {
+    font-weight: 300;
+    font-size: 2em;
+    text-decoration: underline;
+}
+
+h4 {
+    text-decoration: underline;
+    font-size: auto;
+}
 nav {
-    border: 1px solid black;
+
     width: 100%;
     display: inline-flex;
     flex-direction: column;
-    align-items: center;
     height:100vh
 }
 
 section {
-    border: 1px solid black;
-    width:100%;
+
     padding:20px;
+    max-width: 100%;
+    
 }
 
-input {
+input, button {
     display: block;
+    margin: 15px 15px 15px 5px;
+    width: 90%;
+    font-size:1.5em;
 }
 
+button {
+    color:white;
+    background-color: rgb(0, 85, 255);
+    border-color: rgb(0, 85, 255);
+    border-radius: 1em;
+}
 #cityInfo {
     border: 1px solid black;
+    padding: 25px;
+    margin:5px;
+    max-width: 100%;
+    margin-bottom: 25px;
+}
+
+#searchbox {
+    padding:15px;
+    border-bottom: 1px solid black;
+}
+
+p   {
+    margin: 5px;
+}
+
+img {
+    width:40px;
+    height:40px;
+}
+#forecast {
+    text-align: center;
+}
+#cardholder {
+    display: flex;
+}
+.card {
+    max-width: 20%;
+    width: 20%;
+    height:250px;
+    margin:10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.card-body > * {
+    margin-bottom: 10px;
+}
+
+
+@media (max-width: 992px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        height: auto;
+    }
+
+    #forecast {
+        width:100%
+    }
+
+    #cardholder {
+        display: inline;
+    }
+
+    .card {
+        font-size: 1.5em;
+        display: block;
+        width: auto;
+        max-width: 100%;
+        text-align: left;
+    }
 }

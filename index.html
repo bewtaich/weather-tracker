@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>Weather Tracking</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="./assets/reset.css" />
   <link rel="stylesheet" href="./assets/style.css" />
 </head>
@@ -19,8 +20,11 @@
                 <h2>Search for a City:</h2>
             <form>
                 <input type="text" name="City" id="city">
-                <button id="search">Search</button>
+                <button class="btn btn-primary" id="search">Search</button>
             </form>
+            </div>
+            <div id="recents">
+
             </div>
         </nav>
     </aside>
@@ -34,13 +38,68 @@
         </div>
 
         <div id="forecast">
-            <h3></h3>
-            <div id="day1"></div>
-            <div id="day2"></div>
-            <div id="day3"></div>
-            <div id="day4"></div>
-            <div id="day5"></div>
-        </div>
+            <h3>5 Day Forecast</h3>
+
+          <div id="cardholder">
+
+            <div class="card">
+              <div class="card-body bg-light" id="day1">
+                <h4 id=card1date>Date</h4>
+                <img src="" id="card1img">
+                <p id="card1temp">Temp</p>
+                <p id="card1wind">Wind</p>
+                <p id="card1hum">Humidity</p>
+                
+
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-body bg-light" id="day2">
+                <h4 id=card2date>Date</h4>
+                <img src="" id="card2img">
+                <p id="card2temp">Temp</p>
+                <p id="card2wind">Wind</p>
+                <p id="card2hum">Humidity</p>
+                
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-body bg-light" id="day3">
+                <h4 id=card3date>Date</h4>
+                <img src="" id="card3img">
+                <p id="card3temp">Temp</p>
+                <p id="card3wind">Wind</p>
+                <p id="card3hum">Humidity</p>
+                
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-body bg-light" id="day4">
+                <h4 id=card4date>Date</h4>
+                <img src="" id="card4img">
+                <p id="card4temp">Temp</p>
+                <p id="card4wind">Wind</p>
+                <p id="card4hum">Humidity</p>
+                
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-body bg-light" id="day5">
+                <h4 id=card5date>Date</h4>
+                <img src="" id="card5img">
+                <p id="card5temp">Temp</p>
+                <p id="card5wind">Wind</p>
+                <p id="card5hum">Humidity</p>
+                
+              </div>
+              </div>
+            </div>
+          </div>
+
     </section>
   </main>
 
