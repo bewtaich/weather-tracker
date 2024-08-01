@@ -45,8 +45,10 @@ const recent = function () {
         recentsdiv.prepend(last)
        last.textContent=history[i]
        console.log(history[i]);
-       last.setAttribute('class','recentbutton') }
+       last.setAttribute('class','recentbutton') 
+       last.addEventListener('click',historyButton)}
 }
+recent();
 const loadURL=`http://api.openweathermap.org/geo/1.0/direct?q=${history[0]}&limit=&appid=${APIkey}&lang=en&units=imperial`
 
 const getData = function(url){
@@ -159,7 +161,9 @@ function displayFivecast (data) {
     }
     displayFivecast(data);
     })
+    recent();   
 })
+
 }               
  
              
@@ -169,8 +173,13 @@ const getCity = function (event) {
     event.preventDefault();
     const locationUrl=`http://api.openweathermap.org/geo/1.0/direct?q=${input.value}&limit=&appid=${APIkey}&lang=en&units=imperial`
     getData(locationUrl);
-    recent();
 }
 
+function historyButton (event){
+    const cityName = event.target.textContent
+    console.log(cityName);
+    const recentUrl=`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=&appid=${APIkey}&lang=en&units=imperial`
+    getData(recentUrl);
+}
 
 document.querySelector('form').addEventListener('submit',getCity);
