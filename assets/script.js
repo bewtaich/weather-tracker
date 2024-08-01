@@ -51,7 +51,7 @@ const recent = function () {
 recent();
 const loadURL=`http://api.openweathermap.org/geo/1.0/direct?q=${history[0]}&limit=&appid=${APIkey}&lang=en&units=imperial`
 
-const getData = function(url){
+function getData (url) {
 //Gets latitude and longitude data of input    
     fetch(url)
     .then (function (response){
@@ -63,6 +63,7 @@ const getData = function(url){
 
         history.push(data[0].name)
         localStorage.setItem('history',JSON.stringify(history));
+    
 
 // Uses lat and long to get weather data
         const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${APIkey}&lang=en&units=imperial`
@@ -162,7 +163,7 @@ function displayFivecast (data) {
     displayFivecast(data);
     })
     recent();   
-})
+    })
 
 }               
  
@@ -173,6 +174,7 @@ const getCity = function (event) {
     event.preventDefault();
     const locationUrl=`http://api.openweathermap.org/geo/1.0/direct?q=${input.value}&limit=&appid=${APIkey}&lang=en&units=imperial`
     getData(locationUrl);
+    
 }
 
 function historyButton (event){
@@ -180,6 +182,7 @@ function historyButton (event){
     console.log(cityName);
     const recentUrl=`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=&appid=${APIkey}&lang=en&units=imperial`
     getData(recentUrl);
+    
 }
 
 document.querySelector('form').addEventListener('submit',getCity);
