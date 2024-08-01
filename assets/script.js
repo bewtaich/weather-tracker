@@ -6,25 +6,23 @@ const city = document.getElementById('cityName')
 const temp = document.getElementById('temp')
 const wind = document.getElementById('wind')
 const humidity = document.getElementById('humidity')
+const recentsdiv = document.getElementById('recents')
+
 
 const history=[];
 
-const Load = function (){
-    if (localStorage.getItem('history')===(undefined || null)) {
-    localStorage.setItem('history', JSON.stringify(['Austin']))
-} else {
+if (JSON.parse(localStorage.getItem('history'))){
     const stored = JSON.parse(localStorage.getItem('history'))
-    console.log(stored)
+
     for (i=0; i<stored.length; i++) {
         history.push(stored[i])
     }
-}}
-Load();
-console.log(history)
+}
+console.log(history);
 
 let imgurl
 const imgPick = function (condition) {
-    if (condition==='snow'){
+    if (condition==='Snow'){
         imgurl = 'frosty'
     } else if (condition===('Rain' || 'Drizzle')){
         imgurl = 'rainy'
@@ -40,6 +38,15 @@ const imgPick = function (condition) {
     return imgurl
 }
 
+const recent = function () {
+    recentsdiv.innerHTML=""
+    for (i=0;i<history.length;i++){
+        const last = document.createElement('button')
+        recentsdiv.prepend(last)
+       last.textContent=history[i]
+       console.log(history[i]);
+       last.setAttribute('class','recentbutton') }
+}
 const loadURL=`http://api.openweathermap.org/geo/1.0/direct?q=${history[0]}&limit=&appid=${APIkey}&lang=en&units=imperial`
 
 const getData = function(url){
@@ -52,9 +59,8 @@ const getData = function(url){
         const longitude = data[0].lon;
         const latitude = data[0].lat;
 
-        console.log(data[0].name)
         history.push(data[0].name)
-        console.log(history)
+        localStorage.setItem('history',JSON.stringify(history));
 
 // Uses lat and long to get weather data
         const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${APIkey}&lang=en&units=imperial`
@@ -80,7 +86,7 @@ const getData = function(url){
 
         imgPick(weather);
 
-        city.innerHTML=`<img src='./assets/images/${imgurl}.png'> ${nameData} (${month}/${day-1}/${year})`;
+        city.innerHTML=`<img src='./assets/images/${imgurl}.png'> ${nameData} (${month}/${day}/${year})`;
         temp.textContent=`Temperature: ${tempData}\u00B0F`;
         wind.textContent=`Wind Speed: ${windData} MPH`;
         humidity.textContent=`Humidity : ${humidData}%`;
@@ -153,7 +159,6 @@ function displayFivecast (data) {
     }
     displayFivecast(data);
     })
-    return data[0].name
 })
 }               
  
@@ -162,16 +167,10 @@ function displayFivecast (data) {
 //Handler
 const getCity = function (event) {
     event.preventDefault();
-    const history = JSON.parse(localStorage.getItem('history'))
-    console.log(input.value);
     const locationUrl=`http://api.openweathermap.org/geo/1.0/direct?q=${input.value}&limit=&appid=${APIkey}&lang=en&units=imperial`
     getData(locationUrl);
-    localStorage.setItem("history", JSON.stringify(history))
-    console.log(history)
+    recent();
 }
 
-getData(loadURL);  
+
 document.querySelector('form').addEventListener('submit',getCity);
-
-
- 
