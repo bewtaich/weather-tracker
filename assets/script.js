@@ -40,9 +40,9 @@ const imgPick = function (condition) {
 
 const recent = function () {
     recentsdiv.innerHTML=""
-    for (i=0;i<history.length;i++){
+    for (i=history.length-1;(i>=history.length-6) && (i>=0);i--){
         const last = document.createElement('button')
-        recentsdiv.prepend(last)
+        recentsdiv.append(last)
        last.textContent=history[i]
        console.log(history[i]);
        last.setAttribute('class','recentbutton') 
@@ -72,6 +72,11 @@ function getData (url) {
             return response.json();
         })
         .then (function (data) {
+            currentInfo(data);
+            displayFivecast(data);
+            recent();
+        })  })}  
+
 //Displays todays weather         
     function currentInfo (data) {
         
@@ -94,7 +99,7 @@ function getData (url) {
         wind.textContent=`Wind Speed: ${windData} MPH`;
         humidity.textContent=`Humidity : ${humidData}%`;
     }
-        currentInfo(data);    
+           
           
 //Display Forecast Data
 function displayFivecast (data) {
@@ -160,29 +165,46 @@ function displayFivecast (data) {
         const cardimg5= data.list[36].weather[0].main;
         imgPick(cardimg5); document.getElementById('card5img').setAttribute('src',`./assets/images/${imgurl}.png`);
     }
-    displayFivecast(data);
-    })
-    recent();   
-    })
+   
+  
 
-}               
- 
+    
              
+//Does not update Local storage when fetching
+function getRecentData (url) {
+    //Gets latitude and longitude data of input    
+        fetch(url)
+        .then (function (response){
+            return response.json();
+        })
+        .then (function (data) {
+            const longitude = data[0].lon;
+            const latitude = data[0].lat;
+    // Uses lat and long to get weather data
+            const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${APIkey}&lang=en&units=imperial`
+            fetch(url)
+            .then (function (response){
+                return response.json();
+            })
+            .then (function (data) {
+                currentInfo(data);
+                displayFivecast(data);
+                recent();
+            })  })
+        }         
          
 //Handler
 const getCity = function (event) {
     event.preventDefault();
     const locationUrl=`http://api.openweathermap.org/geo/1.0/direct?q=${input.value}&limit=&appid=${APIkey}&lang=en&units=imperial`
     getData(locationUrl);
-    
 }
 
 function historyButton (event){
     const cityName = event.target.textContent
     console.log(cityName);
     const recentUrl=`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=&appid=${APIkey}&lang=en&units=imperial`
-    getData(recentUrl);
-    
+    getRecentData(recentUrl);
 }
 
 document.querySelector('form').addEventListener('submit',getCity);
