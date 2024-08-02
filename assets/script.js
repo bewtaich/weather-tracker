@@ -49,7 +49,7 @@ const recent = function () {
        last.addEventListener('click',historyButton)}
 }
 recent();
-const loadURL=`http://api.openweathermap.org/geo/1.0/direct?q=${history[0]}&limit=&appid=${APIkey}&lang=en&units=imperial`
+const loadURL=`https://api.openweathermap.org/geo/1.0/direct?q=${history[0]}&limit=&appid=${APIkey}&lang=en&units=imperial`
 
 function getData (url) {
 //Gets latitude and longitude data of input    
@@ -196,14 +196,14 @@ function getRecentData (url) {
 //Handler
 const getCity = function (event) {
     event.preventDefault();
-    const locationUrl=`http://api.openweathermap.org/geo/1.0/direct?q=${input.value}&limit=&appid=${APIkey}&lang=en&units=imperial`
+    const locationUrl=`https://api.openweathermap.org/geo/1.0/direct?q=${input.value}&limit=&appid=${APIkey}&lang=en&units=imperial`
     getData(locationUrl);
 }
 
 function historyButton (event){
     const cityName = event.target.textContent
     console.log(cityName);
-    const recentUrl=`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=&appid=${APIkey}&lang=en&units=imperial`
+    const recentUrl=`https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=&appid=${APIkey}&lang=en&units=imperial`
     getRecentData(recentUrl);
 }
 
